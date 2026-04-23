@@ -1,5 +1,5 @@
 {% set name = "djongo" %}
-{% set version = "1.3.6" %}
+{% set version = "1.3.7" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/djongo-{{ version }}.tar.gz
-  sha256: 2250d484d4b4025661c139162bafd359eabaffd0deeba18debc59df78a325dc7
+  sha256: 347f5a310c8111a3e4a540294533c7a975e5a9e1766ef63b62bf044c9d64bab6
 
 build:
   number: 0
