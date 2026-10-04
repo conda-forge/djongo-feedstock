@@ -1,0 +1,25 @@
+Subject: [PATCH] Widen the pymongo ceiling to the 3.x series
+
+Upstream caps pymongo at <=3.11.4. conda-forge builds pymongo 3.x per Python
+and 3.11.4 stops at Python 3.9, so with python_min at 3.11 nothing in that
+range is installable and the package cannot be built at all.
+
+pymongo 3.13.0 is the last 3.x release and does resolve on 3.11. djongo
+imports and runs against it. The cap is widened to the 3.x boundary rather
+than removed, since djongo 1.3 uses pymongo 3 APIs that 4.x dropped.
+
+Without this, pip check reports:
+
+  djongo 1.3.7 has requirement pymongo<=3.11.4,>=3.7.0, but you have pymongo 3.13.0
+
+--- a/pyproject.toml	2026-10-03 22:22:55
++++ b/pyproject.toml	2026-10-03 22:22:55
+@@ -7,7 +7,7 @@
+ name = "djongo"
+ dependencies = [
+     'sqlparse==0.2.4',
+-    'pymongo>=3.7.0,<=3.11.4',
++    'pymongo>=3.7.0,<4',
+     'django>=2.1,<=3.1.12',
+     'pytz>=2018.5'
+ ]
